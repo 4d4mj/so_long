@@ -6,7 +6,7 @@
 /*   By: ajabado <ajabado@student.42beirut.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 16:17:52 by ajabado           #+#    #+#             */
-/*   Updated: 2024/07/14 16:17:53 by ajabado          ###   ########.fr       */
+/*   Updated: 2024/07/14 16:40:13 by ajabado          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ static void	render_inner_walls(t_game *g)
 	}
 }
 
-
 static void	render_outter_walls(t_game *g)
 {
 	unsigned int	i;
@@ -48,7 +47,8 @@ static void	render_outter_walls(t_game *g)
 		render(g, &g->walls_sp.frames[0], (t_point){g->map->cols - 1, i});
 	}
 }
-void render_walls(t_game *g)
+
+void	render_walls(t_game *g)
 {
 	render_outter_walls(g);
 	render_inner_walls(g);

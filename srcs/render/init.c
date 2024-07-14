@@ -6,7 +6,7 @@
 /*   By: ajabado <ajabado@student.42beirut.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 16:32:18 by ajabado           #+#    #+#             */
-/*   Updated: 2024/07/14 16:32:19 by ajabado          ###   ########.fr       */
+/*   Updated: 2024/07/14 16:39:58 by ajabado          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ static void	init_coins(t_game *g)
 		}
 	}
 }
+
 void	init(char *filename)
 {
 	t_game	g;

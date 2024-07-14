@@ -6,7 +6,7 @@
 #    By: ajabado <ajabado@student.42beirut.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/14 02:28:08 by ajabado           #+#    #+#              #
-#    Updated: 2024/07/14 16:33:07 by ajabado          ###   ########.fr        #
+#    Updated: 2024/07/14 17:00:38 by ajabado          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,7 +86,7 @@ $(LIBFT):
 	@make $(MK) -C $(LIBFT_PATH)
 
 $(MLX):
-	@echo "$(HIDE)$(BOLD)$(CYAN)Compiling $(MLX_PATH)...$(RESET)"
+	@echo "$(HIDE)$(BOLD)$(CYAN)> Compiling $(MLX_PATH)...$(RESET)"
 	@make $(MK) -C $(MLX_PATH)
 	@echo "$(SHOW)$(BOLD)$(GREEN)> Compiled $(MLX_PATH) successfully$(RESET)"
 
@@ -110,6 +110,7 @@ clean:
 	@echo "$(YELLOW)> ALL object files of $(NAME) have been deleted$(RESET)"
 
 fclean:
+	@make clean $(MK) -C $(MLX_PATH)
 	@make fclean $(MK) -C $(LIBFT_PATH)
 	@$(RM) $(OBJS)
 	@echo "$(YELLOW)> ALL object files of $(NAME) have been deleted$(RESET)"

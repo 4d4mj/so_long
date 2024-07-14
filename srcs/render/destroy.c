@@ -6,7 +6,7 @@
 /*   By: ajabado <ajabado@student.42beirut.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 02:10:02 by ajabado           #+#    #+#             */
-/*   Updated: 2024/07/14 02:10:03 by ajabado          ###   ########.fr       */
+/*   Updated: 2024/07/14 16:39:47 by ajabado          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static void	destroy_map(t_map *map)
 	destroy_matrix(map->bytes, map->rows);
 	ft_free(map);
 }
+
 static void	destroy_all_sprites(t_game *g)
 {
 	int	k;
@@ -63,6 +64,7 @@ static void	destroy_all_sprites(t_game *g)
 	ft_free(g->player_sp);
 	ft_free(g->enemy_sp);
 }
+
 void	destroy_game(t_game *game)
 {
 	if (!game)
