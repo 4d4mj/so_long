@@ -6,7 +6,7 @@
 /*   By: ajabado <ajabado@student.42beirut.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 15:06:16 by ajabado           #+#    #+#             */
-/*   Updated: 2024/07/14 15:36:15 by ajabado          ###   ########.fr       */
+/*   Updated: 2024/07/14 16:28:31 by ajabado          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define NOT_USED			'N'
 
 // Sprite counters
-# define NUM_WALLS			31
+# define NUM_WALLS			1
 # define NUM_PLAYER_FRAMES	7
 # define NUM_COIN_FRAMES	15
 # define NUM_ENEMY_FRAMES	8
@@ -97,48 +97,14 @@ typedef enum e_mask
 	CLOSE_MASK,
 }			t_mask;
 
-// wall types
-typedef enum e_wall
-{
-	WALL_U,
-	WALL_L,
-	WALL_R,
-	CORNER_L,
-	CORNER_R,
-	WALL_D,
-	BARRIER_L,
-	BARRIER_R,
-	PIPE_H,
-	PIPE_V,
-	EDGE_U,
-	EDGE_D,
-	EDGE_L,
-	EDGE_R,
-	BOUNDED,
-	BOUNDLESS,
-	CORNER_DL,
-	CORNER_DR,
-	CORNER_UL_2,
-	CORNER_UR_2,
-	CORNER_DL_2,
-	CORNER_DR_2,
-	BOUNDLESS_2,
-	BARRIER_L_2,
-	BARRIER_R_2,
-	BARRIER_U_2,
-	BARRIER_D_2,
-	CORNER_BDL,
-	CORNER_BDR,
-	CORNER_BUL,
-	CORNER_BUR,
-}				t_wall;
-
+// 2D pointer
 typedef struct s_point
 {
 	unsigned int	x;
 	unsigned int	y;
 }				t_point;
 
+// map structure
 typedef struct s_map
 {
 	char			**bytes;
@@ -150,6 +116,7 @@ typedef struct s_map
 	unsigned int	num_enemies;
 }				t_map;
 
+// image structure
 typedef struct s_img
 {
 	void	*img;
@@ -161,12 +128,14 @@ typedef struct s_img
 	int		endian;
 }	t_img;
 
+// sprite frames
 typedef struct s_sprite
 {
 	t_img	*frames;
 	int		nframes;
 }				t_sprite;
 
+// display structure
 typedef struct s_display
 {
 	void	*mlx;
@@ -174,6 +143,7 @@ typedef struct s_display
 	t_point	dims;
 }				t_display;
 
+// entity structure
 typedef struct s_entity
 {
 	int			frame;
@@ -189,6 +159,7 @@ typedef struct s_entity
 	t_point		next;
 }				t_entity;
 
+// game structure
 typedef struct s_game
 {
 	t_map			*map;
@@ -208,39 +179,25 @@ typedef struct s_game
 	unsigned int	moves;
 }					t_game;
 
-void		animate(t_game *g, t_entity *ent, t_sprite *frames, int n);
-
 //map
-bool		flood_fill(t_map *map, t_point curr, char **maze);
-bool		diags(int **mat, t_point *p, char *diagonals);
-bool		sides(int **mat, t_point *p, char *diagonals);
-void		fill_bin_matrix(t_game *g, int **mat);
-void		*ft_new_matrix(int rows, int cols, size_t size);
+void		validate_map(t_game *g);
+void		read_map(t_game *game, char *filename);
 
 //destroy
 void		destroy_game(t_game *game);
 void		destroy_matrix(void *matrix, size_t rows);
 
 // init
-void		init_game(char *filename);
-
-// image
-t_img		new_image(t_game *g, t_point dims);
-t_img		new_file_image(t_game *g, char *path);
-void		load_xpm(t_game *g, t_sprite *s, char *prefix, int n);
-void		load_static_entites_frames(t_game *g);
-void		load_enemies_frames(t_game *g);
-void		load_player_frames(t_game *g);
+void		init(char *filename);
 void		load_sprites(t_game *g);
 
-// main
-int			quit(t_game *game);
-void		validate_map(t_game *g);
-
 // enemy
+void		move_enemy(t_game *g);
 bool		enemy_can_move(t_game *g, t_point p);
 bool		enemy_has_possible_moves(t_game *g, t_point *pos);
-void		move_enemies(t_game *g);
+void		chase_strategy(t_game *g, t_entity *enemy);
+void		random_strategy(t_game *g, t_entity *enemy);
+void		change_strategy(t_game *g, void (*strategy)(), t_status status);
 
 // player movement
 int			move_handler(int keycode, t_game *g);
@@ -248,35 +205,26 @@ bool		player_can_move(t_game *g, t_entity *e);
 void		move_player(t_game *game);
 void		player_controller(t_game *g);
 
-// read map
-void		read_map(t_game *game, char *filename);
-t_type		at(t_game *g, t_point p);
-void		set(t_game *g, t_point p, t_type type);
-
 // render
 void		render(t_game *g, t_img *img, t_point p);
 void		render_tile(t_game *g, t_point p);
 void		render_map(t_game *g);
 void		render_counter(t_game *g);
 int			render_frame(t_game *g);
-
-// render walls
-t_wall		pick_wall_sprite_3(t_point *p, int **mat);
-t_wall		pick_wall_sprite_2(t_point *p, int **mat);
-t_wall		pick_wall_sprite(t_point p, int **mat);
-void		render_inner_walls(t_game *g);
-void		render_outter_walls(t_game *g);
-
-// strategy
-void		change_strategy(t_game *g, void (*strategy)(), t_status status);
-void		random_strategy(t_game *g, t_entity *enemy);
-void		chase_strategy(t_game *g, t_entity *enemy);
+void		render_walls(t_game *g);
 
 // utils
-void		message(t_game *game, char *text);
-int			ft_tochar(int c);
 int			ft_tonum(int c);
-bool		is_same_point(t_point p1, t_point p2);
+int			ft_tochar(int c);
+int			quit(t_game *game);
 void		ft_free(void *ptr);
+t_type		at(t_game *g, t_point p);
+t_img		new_image(t_game *g, char *path);
+void		message(t_game *game, char *text);
+void		set(t_game *g, t_point p, t_type type);
+bool		is_same_point(t_point p1, t_point p2);
+void		*ft_new_matrix(int rows, int cols, size_t size);
+bool		flood_fill(t_map *map, t_point curr, char **maze);
+void		animate(t_game *g, t_entity *ent, t_sprite *frames, int n);
 
 #endif

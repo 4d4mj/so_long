@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strategy.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabado <ajabado@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajabado <ajabado@student.42beirut.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/27 23:14:15 by crypto            #+#    #+#             */
-/*   Updated: 2024/07/13 22:40:08 by ajabado          ###   ########.fr       */
+/*   Created: 2024/07/14 16:36:11 by ajabado           #+#    #+#             */
+/*   Updated: 2024/07/14 16:36:12 by ajabado          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,23 @@ void	change_strategy(t_game *g, void (*strategy)(), t_status status)
 			g->enemies[i].e_move_freq = g->enemies[i].e_move_freq / 2;
 }
 
-int	distance(t_point p1, t_point p2)
+void	random_strategy(t_game *g, t_entity *enemy)
+{
+	int	offset;
+
+	while (1)
+	{
+		offset = 1 - (rand() % 3);
+		if (rand() % 2)
+			enemy->next = (t_point){enemy->pos.x + offset, enemy->pos.y};
+		else
+			enemy->next = (t_point){enemy->pos.x, enemy->pos.y + offset};
+		if (enemy_can_move(g, enemy->next))
+			break ;
+	}
+}
+
+static int	distance(t_point p1, t_point p2)
 {
 	return (sqrt(pow(((int)p1.x - (int)p2.x), 2) + \
 		pow(((int)p1.y - (int)p2.y), 2)));
@@ -56,20 +72,4 @@ void	chase_strategy(t_game *g, t_entity *enemy)
 		}
 	}
 	enemy->next = chosen;
-}
-
-void	random_strategy(t_game *g, t_entity *enemy)
-{
-	int	offset;
-
-	while (1)
-	{
-		offset = 1 - (rand() % 3);
-		if (rand() % 2)
-			enemy->next = (t_point){enemy->pos.x + offset, enemy->pos.y};
-		else
-			enemy->next = (t_point){enemy->pos.x, enemy->pos.y + offset};
-		if (enemy_can_move(g, enemy->next))
-			break ;
-	}
 }

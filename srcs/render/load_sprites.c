@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   load_sprites.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabado <ajabado@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajabado <ajabado@student.42beirut.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/21 00:33:38 by ncarvalh          #+#    #+#             */
-/*   Updated: 2024/07/14 00:06:00 by ajabado          ###   ########.fr       */
+/*   Created: 2024/07/14 16:17:44 by ajabado           #+#    #+#             */
+/*   Updated: 2024/07/14 16:27:24 by ajabado          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	load_xpm(t_game *g, t_sprite *s, char *prefix, int n)
+static void	load_xpm(t_game *g, t_sprite *s, char *prefix, int n)
 {
 	size_t	len;
 	int		i;
@@ -27,11 +27,11 @@ void	load_xpm(t_game *g, t_sprite *s, char *prefix, int n)
 	{
 		path[len - 6] = ft_tochar(i / 10);
 		path[len - 5] = ft_tochar(i % 10);
-		s->frames[i - 1] = new_file_image(g, path);
+		s->frames[i - 1] = new_image(g, path);
 	}
 }
 
-void	load_static_entites_frames(t_game *g)
+static void	load_static_entites_frames(t_game *g)
 {
 	g->walls_sp.frames = malloc(NUM_WALLS * sizeof(t_img));
 	if (!g->walls_sp.frames)
@@ -55,7 +55,7 @@ void	load_static_entites_frames(t_game *g)
 	load_xpm(g, &g->collectibles_sp, COLLECTIBLE_PATH, NUM_COIN_FRAMES);
 }
 
-void	load_enemies_frames(t_game *g)
+static void	load_enemies_frames(t_game *g)
 {
 	g->enemy_sp = malloc(2 * sizeof(t_sprite));
 	if (!g->enemy_sp)
@@ -72,7 +72,7 @@ void	load_enemies_frames(t_game *g)
 	load_xpm(g, &g->enemy_sp[ENRAGED], ENEMY_RAGE_PATH, NUM_ENEMY_FRAMES);
 }
 
-void	load_player_frames(t_game *g)
+static void	load_player_frames(t_game *g)
 {
 	g->player_sp = malloc(2 * sizeof(t_sprite));
 	if (!g->player_sp)
@@ -90,7 +90,7 @@ void	load_player_frames(t_game *g)
 }
 
 void	load_sprites(t_game *g)
-{	
+{
 	load_static_entites_frames(g);
 	load_player_frames(g);
 	load_enemies_frames(g);

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajabado <ajabado@student.42beirut.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/10 13:04:07 by ncarvalh          #+#    #+#             */
-/*   Updated: 2024/07/14 15:23:51 by ajabado          ###   ########.fr       */
+/*   Created: 2024/07/14 16:35:35 by ajabado           #+#    #+#             */
+/*   Updated: 2024/07/14 16:35:35 by ajabado          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,5 @@ int	main(int argc, char **argv)
 	if (!is_filename_valid(argv[1]))
 		message(NULL, "Filename must end in \".ber\".\n");
 	srand(time(NULL));
-	init_game(argv[1]);
+	init(argv[1]);
 }

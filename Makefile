@@ -6,7 +6,7 @@
 #    By: ajabado <ajabado@student.42beirut.com>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/14 02:28:08 by ajabado           #+#    #+#              #
-#    Updated: 2024/07/14 15:24:02 by ajabado          ###   ########.fr        #
+#    Updated: 2024/07/14 16:33:07 by ajabado          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,25 +27,25 @@ BOLD	= \033[1m
 # map
 OBJS_MAP = $(SRC_MAP:.c=.o)
 SRC_MAP = $(addprefix $(SRC_DIR)/map/, \
-algorithms.c map_validator.c read_map.c \
+map_validator.c read_map.c \
 )
 
 # move
 OBJS_MOVE = $(SRC_MOVE:.c=.o)
 SRC_MOVE = $(addprefix $(SRC_DIR)/move/, \
-move_enemies.c move_player.c strategy.c \
+move_enemy.c move_player.c strategy.c \
 )
 
 # render
 OBJS_RENDER = $(SRC_RENDER:.c=.o)
 SRC_RENDER = $(addprefix $(SRC_DIR)/render/, \
-animate.c binary_wall_map.c destroy.c image.c load_sprites.c render_walls.c render.c \
+init.c destroy.c load_sprites.c render_walls.c render.c \
 )
 
 # utils
 OBJS_UTILS = $(SRC_UTILS:.c=.o)
 SRC_UTILS = $(addprefix $(SRC_DIR)/utils/, \
-init.c utils.c utils2.c \
+utils.c utils2.c \
 )
 
 # so_long

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajabado <ajabado@student.42beirut.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/20 14:13:49 by ncarvalh          #+#    #+#             */
-/*   Updated: 2024/07/14 15:25:20 by ajabado          ###   ########.fr       */
+/*   Created: 2024/07/14 16:32:18 by ajabado           #+#    #+#             */
+/*   Updated: 2024/07/14 16:32:19 by ajabado          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static void	init_coins(t_game *g)
 		}
 	}
 }
-void	init_game(char *filename)
+void	init(char *filename)
 {
 	t_game	g;
 

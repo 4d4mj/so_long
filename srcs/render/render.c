@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabado <ajabado@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajabado <ajabado@student.42beirut.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/18 02:39:13 by marvin            #+#    #+#             */
-/*   Updated: 2024/07/14 00:06:00 by ajabado          ###   ########.fr       */
+/*   Created: 2024/07/14 16:35:54 by ajabado           #+#    #+#             */
+/*   Updated: 2024/07/14 16:35:54 by ajabado          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,7 @@ void	render_map(t_game *g)
 {
 	t_point	p;
 
-	render_outter_walls(g);
-	render_inner_walls(g);
+	render_walls(g);
 	p.y = 0;
 	while (++p.y < g->map->rows - 1)
 	{
@@ -73,7 +72,7 @@ int	render_frame(t_game *g)
 	animate(g, &g->player, g->player_sp, 1);
 	animate(g, g->enemies, g->enemy_sp, g->map->num_enemies);
 	animate(g, g->coins, &g->collectibles_sp, g->map->num_collectibles);
-	move_enemies(g);
+	move_enemy(g);
 	if (player_can_move(g, &g->player))
 	{
 		render_counter(g);

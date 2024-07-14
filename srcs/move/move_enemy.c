@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move_enemies.c                                     :+:      :+:    :+:   */
+/*   move_enemy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabado <ajabado@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ajabado <ajabado@student.42beirut.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/24 04:35:13 by ncarvalh          #+#    #+#             */
-/*   Updated: 2024/07/13 22:40:42 by ajabado          ###   ########.fr       */
+/*   Created: 2024/07/14 16:11:22 by ajabado           #+#    #+#             */
+/*   Updated: 2024/07/14 16:11:22 by ajabado          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ bool	enemy_has_possible_moves(t_game *g, t_point *pos)
 	return (can_move);
 }
 
-void	move_enemies(t_game *g)
+void	move_enemy(t_game *g)
 {
 	unsigned int	i;
 
