@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabado <ajabado@student.42beirut.com>     +#+  +:+       +#+        */
+/*   By: ajabado <ajabado@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 16:32:24 by ajabado           #+#    #+#             */
-/*   Updated: 2024/07/14 16:32:25 by ajabado          ###   ########.fr       */
+/*   Updated: 2024/07/14 23:33:36 by ajabado          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	ft_free(void *ptr)
 void	message(t_game *game, char *text)
 {
 	destroy_game(game);
-	ft_printf("Error\n");
-	ft_printf(text);
+	ft_printf("Error: ");
+	ft_printf(" %s\n", text);
 	exit(EXIT_FAILURE);
 }
 

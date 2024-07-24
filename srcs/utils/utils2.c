@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabado <ajabado@student.42beirut.com>     +#+  +:+       +#+        */
+/*   By: ajabado <ajabado@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 15:23:36 by ajabado           #+#    #+#             */
-/*   Updated: 2024/07/14 15:23:36 by ajabado          ###   ########.fr       */
+/*   Updated: 2024/07/14 23:34:07 by ajabado          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	quit(t_game *game)
 {
 	destroy_game(game);
+	ft_printf("Exit Success\n");
 	exit(EXIT_SUCCESS);
 }
 

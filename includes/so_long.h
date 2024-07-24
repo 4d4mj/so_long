@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabado <ajabado@student.42beirut.com>     +#+  +:+       +#+        */
+/*   By: ajabado <ajabado@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 15:06:16 by ajabado           #+#    #+#             */
-/*   Updated: 2024/07/14 16:28:31 by ajabado          ###   ########.fr       */
+/*   Updated: 2024/07/15 19:03:49 by ajabado          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,17 @@
 
 # define ENTITIES			"01CEPM"
 # define NOT_USED			'N'
+# define PX 32
+
+# define GAME_WIN "You Win!"
+# define GAME_LOSE "You Lose."
 
 // Sprite counters
 # define NUM_WALLS			1
-# define NUM_PLAYER_FRAMES	7
-# define NUM_COIN_FRAMES	15
+# define NUM_PLAYER_FRAMES	10
+# define NUM_COIN_FRAMES	6
 # define NUM_ENEMY_FRAMES	8
-# define NUM_EXIT_FRAMES	1
+# define NUM_EXIT_FRAMES	10
 # define NUM_FLOOR_FRAMES	1
 
 // sprite animation refresh frequency
@@ -69,6 +73,7 @@ typedef enum e_direction
 // sprite movement keys
 typedef enum e_key
 {
+	ENTER = 65293,
 	ESC = 65307,
 	K_UP = 65362,
 	K_LEFT = 65361,
@@ -173,7 +178,9 @@ typedef struct s_game
 	t_entity		player;
 	t_entity		*enemies;
 	t_entity		*coins;
+	t_entity		exit;
 	t_status		enemy_status;
+	bool			collected_all;
 	void			(*enemy_strategy)();
 	unsigned int	collected;
 	unsigned int	moves;
@@ -211,7 +218,6 @@ void		render_tile(t_game *g, t_point p);
 void		render_map(t_game *g);
 void		render_counter(t_game *g);
 int			render_frame(t_game *g);
-void		render_walls(t_game *g);
 
 // utils
 int			ft_tonum(int c);
@@ -226,5 +232,6 @@ bool		is_same_point(t_point p1, t_point p2);
 void		*ft_new_matrix(int rows, int cols, size_t size);
 bool		flood_fill(t_map *map, t_point curr, char **maze);
 void		animate(t_game *g, t_entity *ent, t_sprite *frames, int n);
+void		display_game_over(t_game *g, char *s);
 
 #endif

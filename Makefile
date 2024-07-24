@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ajabado <ajabado@student.42beirut.com>     +#+  +:+       +#+         #
+#    By: ajabado <ajabado@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/14 02:28:08 by ajabado           #+#    #+#              #
-#    Updated: 2024/07/14 17:00:38 by ajabado          ###   ########.fr        #
+#    Updated: 2024/07/15 00:11:10 by ajabado          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ move_enemy.c move_player.c strategy.c \
 # render
 OBJS_RENDER = $(SRC_RENDER:.c=.o)
 SRC_RENDER = $(addprefix $(SRC_DIR)/render/, \
-init.c destroy.c load_sprites.c render_walls.c render.c \
+init.c destroy.c load_sprites.c render.c game_over.c\
 )
 
 # utils
@@ -115,7 +115,7 @@ fclean:
 	@$(RM) $(OBJS)
 	@echo "$(YELLOW)> ALL object files of $(NAME) have been deleted$(RESET)"
 	@$(RM) $(NAME)
-	@echo "$(RED)> $(NAME) has been deleted$(RESET)"
+	@echo "$(RED)> $(NAME) has been deleted$(RESET)$(SHOW)"
 
 re: fclean all
 

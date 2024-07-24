@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabado <ajabado@student.42beirut.com>     +#+  +:+       +#+        */
+/*   By: ajabado <ajabado@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 16:32:18 by ajabado           #+#    #+#             */
-/*   Updated: 2024/07/14 16:39:58 by ajabado          ###   ########.fr       */
+/*   Updated: 2024/07/15 01:13:07 by ajabado          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ static void	init_graphics(t_game *g)
 	g->disp.mlx = mlx_init();
 	if (!g->disp.mlx)
 		message(g, "Failed allocation on mlx pointer\n");
-	g->disp.win = mlx_new_window(g->disp.mlx, 32 * (g->map->cols), \
-		32 * g->map->rows + 32, "so_long");
+	g->disp.win = mlx_new_window(g->disp.mlx, PX * (g->map->cols), \
+		PX * g->map->rows + PX, "so_long");
 	if (!g->disp.win)
 		message(g, "Failed allocation on window pointer\n");
-	g->disp.dims = (t_point){32 * (g->map->cols - 1), 32 * g->map->rows};
+	g->disp.dims = (t_point){PX * (g->map->cols - 1), PX * g->map->rows};
 }
 
 static void	init_player(t_game *g)
@@ -29,6 +29,9 @@ static void	init_player(t_game *g)
 	g->player.frame_freq = CALLS_PER_FRAME;
 	g->player.animate_speed = ANIMATE_CALLS;
 	g->player.type = PLAYER;
+	g->exit.frame_freq = CALLS_PER_FRAME;
+	g->exit.animate_speed = ANIMATE_CALLS;
+	g->exit.type = EXIT;
 }
 
 static void	init_enemies(t_game *g)

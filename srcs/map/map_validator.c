@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_validator.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabado <ajabado@student.42beirut.com>     +#+  +:+       +#+        */
+/*   By: ajabado <ajabado@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 16:06:17 by ajabado           #+#    #+#             */
-/*   Updated: 2024/07/14 16:06:18 by ajabado          ###   ########.fr       */
+/*   Updated: 2024/07/15 01:38:22 by ajabado          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,10 @@ static bool	has_valid_entities(t_game *g)
 		p.x = -1;
 		while (++p.x < g->map->cols)
 		{
-			if (at(g, p) == PLAYER)
-			{
+			if (at(g, p) == PLAYER && ++g->map->num_players)
 				g->player.pos = p;
-				g->map->num_players++;
-			}
-			else if (at(g, p) == EXIT)
-				g->map->num_exits++;
+			else if (at(g, p) == EXIT && ++g->map->num_exits)
+				g->exit.pos = p;
 			else if (at(g, p) == COLLECTIBLE)
 				g->map->num_collectibles++;
 			else if (at(g, p) == ENEMY)

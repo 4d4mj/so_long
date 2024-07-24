@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabado <ajabado@student.42beirut.com>     +#+  +:+       +#+        */
+/*   By: ajabado <ajabado@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 16:15:50 by ajabado           #+#    #+#             */
-/*   Updated: 2024/07/14 16:15:51 by ajabado          ###   ########.fr       */
+/*   Updated: 2024/07/15 19:07:13 by ajabado          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ static void	collect_collectibles(t_game *g, t_point *p)
 		break ;
 	}
 	g->collected++;
+	if (g->collected == g->map->num_collectibles)
+		g->collected_all = true;
 }
 
 void	player_controller(t_game *g)
@@ -71,14 +73,11 @@ void	player_controller(t_game *g)
 	if (at(g, g->player.next) == COLLECTIBLE)
 		collect_collectibles(g, &g->player.next);
 	else if (at(g, g->player.next) == ENEMY)
-	{
-		ft_printf("Game over.\n", STDOUT_FILENO);
-		quit(g);
-	}
+		display_game_over(g, GAME_LOSE);
 	if (g->collected == g->map->num_collectibles)
 	{
 		if (at(g, g->player.next) == EXIT)
-			quit(g);
+			display_game_over(g, GAME_WIN);
 		if (g->enemy_status != ENRAGED)
 			change_strategy(g, &chase_strategy, ENRAGED);
 	}

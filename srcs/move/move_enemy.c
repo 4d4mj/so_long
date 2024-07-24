@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_enemy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajabado <ajabado@student.42beirut.com>     +#+  +:+       +#+        */
+/*   By: ajabado <ajabado@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 16:11:22 by ajabado           #+#    #+#             */
-/*   Updated: 2024/07/14 16:11:22 by ajabado          ###   ########.fr       */
+/*   Updated: 2024/07/14 23:22:09 by ajabado          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,7 @@ void	move_enemy(t_game *g)
 			continue ;
 		(*g->enemy_strategy)(g, &g->enemies[i]);
 		if (at(g, g->enemies[i].next) == PLAYER)
-		{
-			ft_printf("Game over.\n");
-			quit(g);
-		}
+			display_game_over(g, GAME_LOSE);
 		set(g, g->enemies[i].pos, FLOOR);
 		render(g, &g->floor_sp.frames[0], g->enemies[i].pos);
 		set(g, g->enemies[i].next, ENEMY);
